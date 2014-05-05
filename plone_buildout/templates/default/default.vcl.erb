@@ -105,7 +105,7 @@ sub vcl_pipe {
 sub vcl_fetch {
     set beresp.grace = <%= node['varnish_plone']['grace'] %>s;
     call rewrite_s_maxage;
-    
+
     if (beresp.ttl <= 0s) {
         set beresp.ttl = 0s;
         set beresp.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
